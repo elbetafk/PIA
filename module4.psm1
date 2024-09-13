@@ -36,17 +36,17 @@ function Get-SuspiciousProcesses {
         $highCpuProcesses = $processes | Where-Object { $_.CPU -gt $CpuThreshold }
 
         if ($highCpuProcesses) {
-            Write-Host "Processes using more than $CpuThreshold% CPU:"
+            Write-Host "Procesos que utilizan más de $CpuThreshold% CPU:"
             $highCpuProcesses | ForEach-Object {
                 try {
                     Write-Host "$($.Name) - CPU: $($.CPU)"
                 }
                 catch {
-                    Write-Error "Error retrieving process information: $_"
+                    Write-Error "Error al recuperar la información del proceso: $_"
                 }
             }
         } else {
-            Write-Host "No processes exceed $CpuThreshold% CPU."
+            Write-Host "Ningún proceso excede $CpuThreshold% CPU."
         }
 
         # Search for known malicious processes
@@ -55,22 +55,22 @@ function Get-SuspiciousProcesses {
                 $KnownBadProcessNames -contains $_.Name
             }
             catch {
-                Write-Error "Error checking process name: $_"
+                Write-Error "Ningún proceso excede: $_"
             }
         }
 
         if ($badProcesses) {
-            Write-Host "Known suspicious processes running:"
+            Write-Host "Procesos sospechosos conocidos en ejecución:"
             $badProcesses | ForEach-Object {
                 try {
-                    Write-Host "$($_.Name) is running. Consider investigating."
+                    Write-Host "$($_.Name) está corriendo. Considere investigar."
                 }
                 catch {
-                    Write-Error "Error retrieving suspicious process information: $_"
+                    Write-Error "Error al recuperar información de proceso sospechoso: $_"
                 }
             }
         } else {
-            Write-Host "No known suspicious processes are running."
+            Write-Host "No se están ejecutando procesos sospechosos conocidos."
         }
     }
     catch {
