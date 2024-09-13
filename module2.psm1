@@ -11,8 +11,8 @@ function Get-HiddenFiles {
     Path of the folder to be scanned for hidden files.
 
     .EXAMPLE
-    Get-HiddenFiles -FolderPath "C:\Carpeta"
-    This example shows all the hidden files in the folder "C:\Carpeta".
+    Get-HiddenFiles -FolderPath "C:\Folder"
+    This example shows all the hidden files in the folder "C:\Folder".
     #>
 
     [CmdletBinding()]
