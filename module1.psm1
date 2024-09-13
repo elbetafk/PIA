@@ -2,6 +2,9 @@ function Get-FileHashAndCheckVirusTotal {
     <#
     .SYNOPSIS
     Gets the hash of a file and queries it in the VirusTotal API
+
+    .DESCRIPTION
+    Calculate the SHA256 hash of a file and check its reputation in VirusTotal using the API.
     
     .PARAMETER FilePath
     Full file path
