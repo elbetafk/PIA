@@ -1,10 +1,10 @@
 function Get-FileHashAndCheckVirusTotal {
     <#
     .SYNOPSIS
-    Obtiene el hash de un archivo y lo consulta en la API de VirusTotal
+    Gets the hash of a file and queries it in the VirusTotal API
     
     .PARAMETER FilePath
-    Ruta completa del archivo
+    Full file path
 
     .EXAMPLE
     Get-FileHashAndCheckVirusTotal -FilePath "C:\archivo.exe"
