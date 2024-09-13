@@ -32,10 +32,10 @@ function Get-SuspiciousProcesses {
         # Get all active processes
         $processes = Get-Process
 
-        # Buscar procesos con alto uso de CPU
+        # Search for high CPU usage processes 
         $highCpuProcesses = $processes | Where-Object { $_.CPU -gt $CpuThreshold }
         
-        # Mostrar los procesos que exceden el umbral de CPU
+        # show procesess that exceed the CPU threshold
         if ($highCpuProcesses) {
             Write-Host "Processes using more than $CpuThreshold% CPU:"
             $highCpuProcesses | ForEach-Object {
@@ -45,10 +45,10 @@ function Get-SuspiciousProcesses {
             Write-Host "No processes exceed $CpuThreshold% CPU."
         }
 
-        # Buscar procesos cuyo nombre coincida con la lista de procesos conocidos como maliciosos
+        # Search for known names of malicious processes
         $badProcesses = $processes | Where-Object { $KnownBadProcessNames -contains $_.Name }
 
-        # Mostrar los procesos conocidos por ser sospechosos
+        # Show the known malicious processes 
         if ($badProcesses) {
             Write-Host "Known suspicious processes running:"
             $badProcesses | ForEach-Object {
