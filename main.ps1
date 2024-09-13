@@ -6,7 +6,7 @@ function Show-Menu {
     Write-Host "1. Verificar hash de archivo con VirusTotal"
     Write-Host "2. Listar archivos ocultos"
     Write-Host "3. Ver uso de recursos del sistema"
-    Write-Host "4. Revisar puertos abiertos"
+    Write-Host "4. Revisón de procesos sospechosos"
     Write-Host "5. Salir"
 }
 
