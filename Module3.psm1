@@ -2,6 +2,9 @@ function Get-SystemResourceUsage {
     <#
     .SYNOPSIS
     Displays the system usage: CPU (porcentage), Memory, Disk and Red.
+
+    .DESCRIPTION
+    Gets and displays the current system CPU, memory, disk, and network adapter usage.
     
     .EXAMPLE
     Get-SystemResourceUsage
