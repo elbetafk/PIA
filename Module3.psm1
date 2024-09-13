@@ -26,7 +26,7 @@ function Get-SystemResourceUsage {
         # Uso de Red
         $network = Get-NetAdapter | Select-Object Name, Status, LinkSpeed
         
-        # Salida
+        # Salida/Resultados
         [PSCustomObject]@{
             CPU_Usage = "$($cpu.Average)%"
             Memory_Usage = "$usedMemory MB de $totalMemory MB"
