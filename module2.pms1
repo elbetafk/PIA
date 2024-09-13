@@ -1,41 +1,41 @@
 function Get-HiddenFiles {
     <#
     .SYNOPSIS
-    Muestra archivos ocultos de una carpeta en específico.
+    Show hidden files from a specific folder.
     
     .DESCRIPTION
-    La función Get-HiddenFiles toma la ruta de una carpeta y lista todos los archivos ocultos presentes en ella.
-    Si la carpeta no existe, se lanza un error.
+    The Get-HiddenFiles function takes the path of a folder and lists all the hidden files present in it.
+    If the folder does not exist, an error is thrown.
 
     .PARAMETER FolderPath
-    Ruta de la carpeta que se analizará para buscar archivos ocultos.
+    Path of the folder to be scanned for hidden files.
 
     .EXAMPLE
     Get-HiddenFiles -FolderPath "C:\Carpeta"
-    Este ejemplo muestra todos los archivos ocultos en la carpeta "C:\Carpeta".
+    This example shows all the hidden files in the folder "C:\Carpeta".
     #>
 
     [CmdletBinding()]
     param (
-        # Parámetro obligatorio que define la ruta de la carpeta a analizar
+        # Mandatory parameter that defines the path of the folder to analyze
         [Parameter(Mandatory = $true)]
         [string]$FolderPath
     )
     
     try {
-        # Activar el modo estricto 
+        # Activate strict mode
         Set-StrictMode -Version Latest
         
-        # Comprobar si la carpeta especificada en FolderPath existe
+        # Check if the folder specified in FolderPath exists
         if (-not (Test-Path -Path $FolderPath)) {
-            throw "La carpeta no existe: $FolderPath"  # Lanzar una excepción si la carpeta no existe
+            throw "La carpeta no existe: $FolderPath"  # Throw exception if folder does not exist
         }
 
-        # Obtener y listar archivos ocultos en la carpeta especificada
+        # Get and list hidden files in the specified folder
         Get-ChildItem -Path $FolderPath -Hidden -File
     }
     catch {
-        # Manejar errores y mostrar un mensaje en caso de fallo
+        # Handle errors and display a message in case of failure
         Write-Error "Error al listar archivos ocultos: $_"
     }
 }
