@@ -1,0 +1,41 @@
+function Get-HiddenFiles {
+    <#
+    .SYNOPSIS
+    Muestra archivos ocultos de una carpeta en específico.
+    
+    .DESCRIPTION
+    La función Get-HiddenFiles toma la ruta de una carpeta y lista todos los archivos ocultos presentes en ella.
+    Si la carpeta no existe, se lanza un error.
+
+    .PARAMETER FolderPath
+    Ruta de la carpeta que se analizará para buscar archivos ocultos.
+
+    .EXAMPLE
+    Get-HiddenFiles -FolderPath "C:\Carpeta"
+    Este ejemplo muestra todos los archivos ocultos en la carpeta "C:\Carpeta".
+    #>
+
+    [CmdletBinding()]
+    param (
+        # Parámetro obligatorio que define la ruta de la carpeta a analizar
+        [Parameter(Mandatory = $true)]
+        [string]$FolderPath
+    )
+    
+    try {
+        # Activar el modo estricto 
+        Set-StrictMode -Version Latest
+        
+        # Comprobar si la carpeta especificada en FolderPath existe
+        if (-not (Test-Path -Path $FolderPath)) {
+            throw "La carpeta no existe: $FolderPath"  # Lanzar una excepción si la carpeta no existe
+        }
+
+        # Obtener y listar archivos ocultos en la carpeta especificada
+        Get-ChildItem -Path $FolderPath -Hidden -File
+    }
+    catch {
+        # Manejar errores y mostrar un mensaje en caso de fallo
+        Write-Error "Error al listar archivos ocultos: $_"
+    }
+}
