@@ -1,19 +1,19 @@
 function Get-SuspiciousProcesses {
     <#
     .SYNOPSIS
-    Look for suspicious processes based on high CPU usage or names commonly associated with malware.
-
+    Look for suspicious processes based on high CPU usage or names associated with malware.
+    
     .PARAMETER CpuThreshold
-    Defines the CPU usage limit (in percentage) to consider a process suspicious.
+    The CPU threshold that considers a process suspicious (in percentage).
 
     .PARAMETER KnownBadProcessNames
-    Provides a list of process names that are known to be malicious or dubious.
+    List of names of known or suspected malicious processes.
 
     .EXAMPLE
     Get-SuspiciousProcesses -CpuThreshold 50 -KnownBadProcessNames @("badprocess.exe", "malware.exe")
-
+    
     .DESCRIPTION
-    This module analyzes processes that exceed a specified CPU usage level or whose names match a list of processes commonly used by malware.
+    Checks running processes and alerts if they exceed a certain CPU threshold or if their names match known malicious processes.
     #>
 
     [CmdletBinding()]
@@ -26,39 +26,57 @@ function Get-SuspiciousProcesses {
     )
     
     try {
-        # Enable strict mode for script execution
+        # Activate strict mode
         Set-StrictMode -Version Latest
 
-        # Get all active processes
+        # Get all running processes
         $processes = Get-Process
 
-        # Search for high CPU usage processes 
+        # Check processes with high CPU usage
         $highCpuProcesses = $processes | Where-Object { $_.CPU -gt $CpuThreshold }
-        
-        # show procesess that exceed the CPU threshold
+
         if ($highCpuProcesses) {
-            Write-Host "Procesos que usan más del $CpuThreshold% de CPU:"
+            Write-Host "Processes using more than $CpuThreshold% CPU:"
             $highCpuProcesses | ForEach-Object {
-                Write-Host "$($.Name) - CPU: $($.CPU)"
+                try {
+                    Write-Host "$($.Name) - CPU: $($.CPU)"
+                }
+                catch {
+                    Write-Error "Error retrieving process information: $_"
+                }
             }
         } else {
-            Write-Host "Ningún proceso excede el $CpuThreshold% de CPU"
+            Write-Host "No processes exceed $CpuThreshold% CPU."
         }
 
-        # Search for known names of malicious processes
-        $badProcesses = $processes | Where-Object { $KnownBadProcessNames -contains $_.Name }
+        # Search for known malicious processes
+        $badProcesses = $processes | Where-Object {
+            try {
+                $KnownBadProcessNames -contains $_.Name
+            }
+            catch {
+                Write-Error "Error checking process name: $_"
+            }
+        }
 
-        # Show the known malicious processes 
         if ($badProcesses) {
-            Write-Host "procesos sospechosos conocidos:"
+            Write-Host "Known suspicious processes running:"
             $badProcesses | ForEach-Object {
-                Write-Host "$($_.Name) se está ejecutando. Considere investigar"
+                try {
+                    Write-Host "$($_.Name) is running. Consider investigating."
+                }
+                catch {
+                    Write-Error "Error retrieving suspicious process information: $_"
+                }
             }
         } else {
-            Write-Host "Ningún proceso sospechoso conocido se está ejecutando"
+            Write-Host "No known suspicious processes are running."
         }
     }
     catch {
         Write-Error "Error al buscar procesos sospechosos: $_"
     }
 }
+
+# Export function
+Export-ModuleMember -Function Get-SuspiciousProcesses
