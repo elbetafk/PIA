@@ -37,12 +37,12 @@ function Get-SuspiciousProcesses {
         
         # show procesess that exceed the CPU threshold
         if ($highCpuProcesses) {
-            Write-Host "Processes using more than $CpuThreshold% CPU:"
+            Write-Host "Procesos que usan más del $CpuThreshold% de CPU:"
             $highCpuProcesses | ForEach-Object {
                 Write-Host "$($.Name) - CPU: $($.CPU)"
             }
         } else {
-            Write-Host "No processes exceed $CpuThreshold% CPU."
+            Write-Host "Ningún proceso excede el $CpuThreshold% de CPU"
         }
 
         # Search for known names of malicious processes
@@ -50,12 +50,12 @@ function Get-SuspiciousProcesses {
 
         # Show the known malicious processes 
         if ($badProcesses) {
-            Write-Host "Known suspicious processes running:"
+            Write-Host "procesos sospechosos conocidos:"
             $badProcesses | ForEach-Object {
-                Write-Host "$($_.Name) is running. Consider investigating."
+                Write-Host "$($_.Name) se está ejecutando. Considere investigar"
             }
         } else {
-            Write-Host "No known suspicious processes are running."
+            Write-Host "Ningún proceso sospechoso conocido se está ejecutando"
         }
     }
     catch {
