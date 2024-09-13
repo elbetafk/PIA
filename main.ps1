@@ -2,7 +2,9 @@ function Show-Menu {
     param (
         [string]$Title = "Menú Principal"
     )
+    Write-Host "~~~~~~~~~~~~~~~~~~~~~~"
     Write-Host "$Title"
+    Write-Host "~~~~~~~~~~~~~~~~~~~~~~"
     Write-Host "1. Verificar hash de archivo con VirusTotal"
     Write-Host "2. Listar archivos ocultos"
     Write-Host "3. Ver uso de recursos del sistema"
