@@ -30,7 +30,7 @@ function Main {
                 Get-SystemResourceUsage
             }
             4 {
-                Get-OpenPorts
+                Get-SuspiciousProcesses
             }
             5 {
                 Write-Host "Saliendo"
