@@ -13,7 +13,7 @@ function Get-SystemResourceUsage {
     try {
         Set-StrictMode -Version Latest
         
-        # CIP
+        # CPU
         $cpu = Get-WmiObject Win32_Processor | Measure-Object -Property LoadPercentage -Average | Select-Object Average
         
         # Memory
