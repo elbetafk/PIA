@@ -1,0 +1,15 @@
+----- Reporte de Monitoreo de Red -----
+Fecha: Mon Sep 30 01:33:54 AM EDT 2024
+Interfaz: eth0
+
+---- Conexiones Activas ----
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -                   
+tcp6       0      0 :::22                   :::*                    LISTEN      -                   
+
+---- Tabla de Enrutamiento ----
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags   MSS Window  irtt Iface
+default         192.168.100.1   0.0.0.0         UG        0 0          0 eth0
+192.168.100.0   0.0.0.0         255.255.255.0   U         0 0          0 eth0
