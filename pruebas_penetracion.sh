@@ -48,7 +48,7 @@ function start_port_scanning {
         echo "No se encontraron puertos abiertos en el rango especificado."
     fi
 
-    echo ""  # Añade un espacio antes de regresar al menú
+    echo ""  # Add a space before returning to the menu
     show_pen_test_menu
 }
 
@@ -66,7 +66,7 @@ function start_ssh_brute_force {
     done
 
     echo "Ataque de fuerza bruta finalizado. No se encontraron credenciales válidas (simulado)."
-    echo ""  # Añade un espacio antes de mostrar el submenú
+    echo ""  # Add a space before showing the submenu
     show_submenu
 }
 
@@ -83,7 +83,7 @@ function show_submenu {
     
     case $submenu_choice in
         1) generate_report ;;
-        2) start_ssh_brute_force ;;  # Llamar nuevamente a la función de fuerza bruta SSH
+        2) start_ssh_brute_force ;;  # Call the SSH brute force function again
         3) backup_security ;;
         4) show_pen_test_menu ;;
         *) 
@@ -103,7 +103,7 @@ function generate_report {
         done
     done
     echo "Reporte guardado en: $report_file"
-    echo ""  # Añade un espacio antes de regresar al submenú
+    echo ""  # Add a space before returning to the submenu
     show_submenu
 }
 
@@ -113,14 +113,14 @@ function backup_security {
     cp /etc/passwd "$backup_dir"
     cp /etc/group "$backup_dir"
     echo "Respaldo de seguridad realizado en el directorio: $backup_dir"
-    echo ""  # Añade un espacio antes de regresar al submenú
+    echo ""  # Add a space before returning to the submenu
     show_submenu
 }
 
 function start_network_enumeration {
     echo "Enumerando dispositivos en la red local..."
     arp -a
-    echo ""  # Añade un espacio antes de regresar al menú
+    echo ""  # Add a space before returning to the menu
     show_pen_test_menu
 }
 
@@ -137,9 +137,9 @@ function start_dns_enumeration {
     echo -e "\nRegistros CNAME:"
     dig +short CNAME $domain
     
-    echo ""  # Añade un espacio antes de regresar al menú
+    echo ""  # Add a space before returning to the menu
     show_pen_test_menu
 }
 
-# Iniciar el menú principal
+# Start main menu
 show_pen_test_menu
