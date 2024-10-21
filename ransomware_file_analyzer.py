@@ -9,10 +9,10 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
 
-# # Common file extensions that are often targeted by ransomware
+# Common file extensions that are often targeted by ransomware
 COMMON_FILE_EXTENSIONS = {'.txt', '.pdf', '.doc', '.docx', '.jpg', '.png', '.xls', '.xlsx'}
 
-# # List of common ransom note file names
+# List of common ransom note file names
 RANSOM_NOTE_NAMES = {'README.txt', 'DECRYPT.txt', 'HELP_DECRYPT.txt', 'INSTRUCTIONS.txt'}
 
 
@@ -82,7 +82,7 @@ def detect_ransomware_activity(directory):
                 if file in RANSOM_NOTE_NAMES:
                     ransom_notes.append(file_path)
 
-                # # Detection of files with changed extensions
+                # Detection of files with changed extensions
                 elif file_extension not in COMMON_FILE_EXTENSIONS and len(file_extension) > 0:
                     encrypted_files.append(file_path)
 
