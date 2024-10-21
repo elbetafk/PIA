@@ -26,17 +26,21 @@ def main():
                 ransomware_file_analyzer.detect_ransomware_activity(directory)
             elif choice == 2:
                 image_path = input("Ingresa la ruta de la imagen (con extension .jpg): ")
-                metadata_extraction.main(image_path)  # Llamada al módulo de extracción de metadatos
+                # Call to the metadata extraction module
+                metadata_extraction.main(image_path)
             elif choice == 3:
                 query = input("Ingrese un servidor HTTP ('apache', 'nginx', 'mysql', 'cisco', 'IIS'): ")
                 if query in ['apache', 'nginx', 'mysql', 'cisco', 'IIS']:
-                    shodan_search.main(query)  # Llamada al módulo de búsqueda en Shodan
+                    # Calling the search module in Shodan
+                    shodan_search.main(query) 
                 else:
                     print("Por favor, ingrese uno de los valores indicados.")
             elif choice == 4:
-                verify_ip.main()  # Llamada al módulo de verificación de IP
+                # Call to IP verification module
+                verify_ip.main() 
             elif choice == 5:
-                vulnerability_headers.vulnerability_headers()  # Llamada al módulo de verificación de encabezados
+                # Call to header verification module
+                vulnerability_headers.vulnerability_headers()
             elif choice == 6:
                 print("Saliendo del programa.")
                 break
